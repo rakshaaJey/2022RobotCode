@@ -25,10 +25,10 @@ public class RobotMap {
     public static final class CAN {
         public static final int TALONFX_DRIVE_LEFT_FRONT = 3;
         public static final int TALONFX_DRIVE_LEFT_MID = 0;
-        public static final int TALONFX_DRIVE_LEFT_BACK = 4;
-        public static final int TALONFX_DRIVE_RIGHT_FRONT = 1;
+        public static final int TALONFX_DRIVE_LEFT_BACK = 2;
+        public static final int TALONFX_DRIVE_RIGHT_FRONT = 19;
         public static final int TALONFX_DRIVE_RIGHT_MID = 0;
-        public static final int TALONFX_DRIVE_RIGHT_BACK = 2;
+        public static final int TALONFX_DRIVE_RIGHT_BACK = 18;
 
         public static final int TALONFX_SHOOTER_RIGHT = 0; // dummy port values
         public static final int TALONFX_SHOOTER_LEFT = 0; // dummy port values
@@ -41,8 +41,6 @@ public class RobotMap {
     }
 
     public static final class ControllerPorts {
-        //public static final int decreaseButton = 5; //A
-        //public static final int increaseButton = 6; //B
 
         //public static final int shooterOne = 3; //X
         //public static final int shooterTwo = 4; //Y
@@ -53,8 +51,8 @@ public class RobotMap {
         public static final int leftFingers = 3; //X
         public static final int rightFingers = 4; //Y
 
-        public static final int highGear = 1;
-        public static final int climbGear = 2;
+        public static final int highGear = 1; //A
+        public static final int climbGear = 2; //B
     }
     /**
      * Analog Port Numbers
@@ -79,20 +77,20 @@ public class RobotMap {
     }
 
     public static final class PCM {
-        public static final int DRIVE_SHIFTER_A = 0;
-        public static final int CLIMB_SHIFTER_A = 0;
-        public static final int DRIVE_SHIFTER_B = 0;
-        public static final int CLIMB_SHIFTER_B = 0;
+        public static final int DRIVE_SHIFTER_A = 14;
+        public static final int CLIMB_SHIFTER_A = 12;
+        public static final int DRIVE_SHIFTER_B = 15;
+        public static final int CLIMB_SHIFTER_B = 13;
         
         // These are for climb bar A
-        public static final int LEFTFINGER_AA = 0;
-        public static final int LEFTFINGER_BA = 0;
-        public static final int RIGHTFINGER_AA = 0;
-        public static final int RIGHTFINGER_BA = 0;
-        public static final int LEFTCLAMP_AA = 0;
-        public static final int LEFTCLAMP_BA = 0;
-        public static final int RIGHTCLAMP_AA = 0;
-        public static final int RIGHTCLAMP_BA = 0;
+        public static final int LEFTFINGER_AA = 1;
+        public static final int LEFTFINGER_BA = 3;
+        public static final int RIGHTFINGER_AA = 5;
+        public static final int RIGHTFINGER_BA = 7;
+        public static final int LEFTCLAMP_AA = 2;
+        public static final int LEFTCLAMP_BA = 4;
+        public static final int RIGHTCLAMP_AA = 6;
+        public static final int RIGHTCLAMP_BA = 8;
 
         // These are for climb bar B
         public static final int LEFTFINGER_AB = 0;

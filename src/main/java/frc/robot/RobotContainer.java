@@ -12,8 +12,8 @@ import frc.robot.CustomButtons.DoubleShooter;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Shooter;
 import frc.robot.util.Utilities;
-import frc.robot.commands.Climber.ClimbRungs;
-import frc.robot.commands.Climber.EngageClimber;
+//import frc.robot.commands.Climber.ClimbRungs;
+//import frc.robot.commands.Climber.EngageClimber;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Hood;
 import frc.robot.subsystems.Intake;
@@ -80,20 +80,27 @@ public class RobotContainer {
     JoystickButton doHighGear = new JoystickButton(m_driveJoystick, RobotMap.ControllerPorts.highGear);
     JoystickButton doClimbGear = new JoystickButton(m_driveJoystick, RobotMap.ControllerPorts.climbGear);
 
-
-
     //JoystickButton increase = new JoystickButton(m_driveJoystick, RobotMap.ControllerPorts.increaseButton); //Increase flywheel rpm by 100
     //JoystickButton decrease = new JoystickButton(m_driveJoystick, RobotMap.ControllerPorts.decreaseButton); //Decrease flywheel rpm by 100
 
-    //DoubleShooter shootButtons = new DoubleShooter(runShooter, runShooterTwo);
+    DoubleShooter driveForward = new DoubleShooter(doHighGear, doClimbGear);
+    DoubleShooter driveBackwards = new DoubleShooter(toggleLeftFingers, toggleRightFingers);
 
     JoystickButton enagageClimbButton = new JoystickButton(m_driveJoystick, RobotMap.JOYSTICK_BUTTONS.ENGAGE_CLIMB);
     JoystickButton climbButton = new JoystickButton(m_driveJoystick, RobotMap.JOYSTICK_BUTTONS.CLIMB);
 
-    m_driveTrain.setDefaultCommand(new RunCommand(() -> {
+    /* m_driveTrain.setDefaultCommand(new RunCommand(() -> {
       m_driveTrain.arcadeDrive(-m_driveJoystick.getRawAxis(RobotMap.JOYSTICK_AXIS.DRIVE),
           -m_driveJoystick.getRawAxis(RobotMap.JOYSTICK_AXIS.TURN));
-    }, m_driveTrain));
+    }, m_driveTrain)); */
+
+      driveForward.whenHeld(new RunCommand(() -> {
+        m_driveTrain.set(0.5);
+      }), true);
+
+      driveBackwards.whenHeld(new RunCommand(() -> {
+        m_driveTrain.set(-0.5);
+      }), true);
 
     toggleLeftClamps.whenPressed(new InstantCommand(() -> {
       m_climber.toggleLeftClamps();
