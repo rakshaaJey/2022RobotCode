@@ -112,7 +112,7 @@ public class RobotContainer {
     }), true);
 
     doHighGear.whenPressed(new InstantCommand(() -> {
-      m_driveTrain.toggleHighGear();
+      m_driveTrain.toggleDriveGear();
     }), true);
 
     doClimbGear.whenPressed(new InstantCommand(() -> {
@@ -149,7 +149,7 @@ public class RobotContainer {
    */
   public void robotInit() {
     // m_driveTrain.
-    m_driveTrain.setHighGear(true);
+    m_driveTrain.setDriveGear(true);
   }
 
   /**

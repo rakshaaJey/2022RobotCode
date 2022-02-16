@@ -7,6 +7,10 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
+import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -22,7 +26,11 @@ public class DriveTrain extends SubsystemBase {
 
   private final Encoder m_leftEncoder, m_rightEncoder;
 
-  private final Solenoid m_highGearA, m_climbGearA, m_climbGearB, m_highGearB;
+  private final Solenoid m_driveGearA, m_climbGearA, m_climbGearB, m_driveGearB;
+
+  private final DifferentialDriveKinematics m_kinematics;
+
+  private final DifferentialDriveOdometry m_odometry;
 
   //private final AHRS m_gyro;
 
@@ -35,14 +43,13 @@ public class DriveTrain extends SubsystemBase {
     m_rightMid = new TalonFX(RobotMap.CAN.TALONFX_DRIVE_RIGHT_MID);
     m_rightBack = new TalonFX(RobotMap.CAN.TALONFX_DRIVE_RIGHT_BACK);
 
-    m_highGearA = new Solenoid(PneumaticsModuleType.REVPH, RobotMap.PCM.DRIVE_SHIFTER_A);
+    m_driveGearA = new Solenoid(PneumaticsModuleType.REVPH, RobotMap.PCM.DRIVE_SHIFTER_A);
     m_climbGearA = new Solenoid(PneumaticsModuleType.REVPH, RobotMap.PCM.CLIMB_SHIFTER_A);
-    m_highGearB = new Solenoid(PneumaticsModuleType.REVPH, RobotMap.PCM.DRIVE_SHIFTER_B);
+    m_driveGearB = new Solenoid(PneumaticsModuleType.REVPH, RobotMap.PCM.DRIVE_SHIFTER_B);
     m_climbGearB = new Solenoid(PneumaticsModuleType.REVPH, RobotMap.PCM.CLIMB_SHIFTER_B);
 
     m_leftEncoder = new Encoder(RobotMap.DIO.DRIVE_LEFT_ENCODER_A, RobotMap.DIO.DRIVE_LEFT_ENCODER_B);
     m_rightEncoder = new Encoder(RobotMap.DIO.DRIVE_RIGHT_ENCODER_A, RobotMap.DIO.DRIVE_RIGHT_ENCODER_B);
-
 
     //check with real bot
     m_leftEncoder.setReverseDirection(true);
@@ -66,14 +73,19 @@ public class DriveTrain extends SubsystemBase {
     m_rightBack.setInverted(false);
 
     //AHRS is commented out right now because it sucks and is bad and is currently in jail
-    /* AHRS gyro;
+    
+    AHRS gyro;
+
     try {
       gyro = new AHRS(SPI.Port.kMXP));
     } catch (Exception e) {
       gyro = null;
       e.printStackTrace();
     }
-    m_gyro = gyro; */
+    m_gyro = gyro; 
+
+    m_kinematics = new DifferentialDriveKinematics(Constants.DriveTrain.TRACK_WIDTH);
+    m_odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(-getGyroAngle()), new Pose2d(0.0, 0.0, Rotation2d.fromDegrees(0.0)));
 
   }
   
@@ -147,13 +159,13 @@ public class DriveTrain extends SubsystemBase {
     return m_leftEncoder.getRate();
   }
 
-  public void setHighGear(boolean on) {
-    m_highGearA.set(on);
-    m_highGearB.set(on);
+  public void setDriveGear(boolean on) {
+    m_driveGearA.set(on);
+    m_driveGearB.set(on);
   }
 
-  public boolean isHighGear() {
-    return m_highGearA.get();
+  public boolean isDriveGear() {
+    return m_driveGearA.get();
   }
 
   public void setClimbGear(boolean on) {
@@ -165,9 +177,9 @@ public class DriveTrain extends SubsystemBase {
     return m_climbGearA.get();
   }
 
-  public void toggleHighGear() {
-    m_highGearB.toggle();
-    m_highGearA.toggle();
+  public void toggleDriveGear() {
+    m_driveGearB.toggle();
+    m_driveGearA.toggle();
   }
 
   public void toggleClimbGear() {
@@ -180,7 +192,7 @@ public class DriveTrain extends SubsystemBase {
     SmartDashboard.putNumber("drive/encoders/leftEncoder", getLeftDistance());
     SmartDashboard.putNumber("drive/encoders/rightEncoder", getRightDistance());
     //SmartDashboard.putNumber("drive/gyroAngle", getGyroAngle());
-    SmartDashboard.putBoolean("drive/lowGear", !isHighGear());
+    SmartDashboard.putBoolean("drive/lowGear", !isDriveGear());
     SmartDashboard.putNumber("drive/speed", Math.abs((getLeftVelocity() + getRightVelocity()) / 2d));
   }
 

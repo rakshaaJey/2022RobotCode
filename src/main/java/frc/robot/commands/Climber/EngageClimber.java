@@ -45,7 +45,7 @@ public class EngageClimber extends CommandBase {
   @Override
   public void execute() {
     if (m_timer.get() <= 3) {
-      m_driveTrain.setHighGear(false);
+      m_driveTrain.setDriveGear(false);
       m_driveTrain.setClimbGear(true);
     } else if (m_timer.get() <= 8) {
       // Set all clamps and fingers to correct position
@@ -58,7 +58,7 @@ public class EngageClimber extends CommandBase {
       double distanceTravelled = m_driveTrain.getAverageDistance();
       m_driveTrain.set(m_controller.calculate(m_setpoint - distanceTravelled, m_setpoint));
     } else {
-      m_driveTrain.setHighGear(true);
+      m_driveTrain.setDriveGear(true);
       m_driveTrain.setClimbGear(false);
     }
   }
