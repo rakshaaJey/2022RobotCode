@@ -80,13 +80,18 @@ public class DriveTrain extends SubsystemBase {
   
   // We only set back ones here and not front ones
   // If that causes a problem, then blame build
+
+  /**
+   * @param speed
+   * Sets the speed of both Talons
+   */
   public void set(double speed) {
     m_leftBack.set(ControlMode.PercentOutput, speed);
     m_rightBack.set(ControlMode.PercentOutput, speed);
   }
 
   /**
-   * Stops the robot
+   * Stops all drive train Talons
    */
   public void stop() {
     m_leftBack.set(ControlMode.PercentOutput, 0.0);
@@ -115,6 +120,13 @@ public class DriveTrain extends SubsystemBase {
   /*public double getLeftDistance() {
     return m_leftEncoder.getDistance();
   } */
+/*
+  /**
+   * @return the Left Back Built-In Encoder output
+   */
+  public double getLeftDistance() {
+    return m_leftBack.getSelectedSensorPosition();
+  }
 
   /**
    * @return the right encoder's output
@@ -122,6 +134,13 @@ public class DriveTrain extends SubsystemBase {
   /*public double getRightDistance() {
     return m_rightEncoder.getDistance();
   } */
+/*
+  /**
+   * @return the Right Back Built-In Encoder output
+   */
+  public double getRightDistance() {
+    return m_rightBack.getSelectedSensorPosition();
+  }
 
   /**
    * @return the average of the left and right encoder output
@@ -129,6 +148,13 @@ public class DriveTrain extends SubsystemBase {
   /*public double getAverageDistance() {
     return (getLeftDistance() + getRightDistance()) / 2;
   } */
+
+    /**
+   * @return the average of the left and right built-in encoder output
+   */
+  public double getAverageDistance() {
+    return (getLeftDistance() + getRightDistance()) / 2;
+  }
 
   /**
    * Gets the speed of the right side of the drivetrain
@@ -138,39 +164,81 @@ public class DriveTrain extends SubsystemBase {
   /*public double getRightVelocity() {
     return m_rightEncoder.getRate();
   }*/
+  
+  /**
+   * Gets the speed of the right side of the drivetrain
+   *
+   * @return the speed of the right side of the drivetrain in meters/second
+   */
+  public double getRightVelocity() {
+    return m_rightBack.getSelectedSensorVelocity();
+  }
 
   /**
    * Gets the speed of the left side of the drivetrain
    *
    * @return the speed of the left side of the drivetrain in meters/second
    */
-  /*public double getLeftVelocity() {
+  /* public double getLeftVelocity() {
     return m_leftEncoder.getRate();
   } */
 
+  /**
+   * Gets the speed of the left side of the drivetrain
+   *
+   * @return the speed of the left side of the drivetrain in meters/second
+   */
+  public double getLeftVelocity() {
+    return m_leftBack.getSelectedSensorVelocity();
+  }
+
+  /**
+   * 
+   * @param on
+   * Sets the High gear on or off
+   */
   public void setHighGear(boolean on) {
     m_highGearA.set(on);
     m_highGearB.set(on);
   }
 
+  /**
+   * 
+   * @return True is the Drive Train is in High Gear
+   */
   public boolean isHighGear() {
     return m_highGearA.get();
   }
 
+  /**
+   * 
+   * @param on 
+   * Sets the Climb Gear on or off
+   */
   public void setClimbGear(boolean on) {
     m_climbGearA.set(on);
     m_climbGearB.set(on);
   }
 
+  /**
+   * 
+   * @return True if the Drive Train is in Climb Gear
+   */
   public boolean isClimbGear() {
     return m_climbGearA.get();
   }
 
+  /**
+   * Toggles the High/Low gears on the Drive Train
+   */
   public void toggleHighGear() {
     m_highGearB.toggle();
     m_highGearA.toggle();
   }
 
+  /**
+   * Toggles the Drive Train from Drive mode to Climb mode
+   */
   public void toggleClimbGear() {
     m_climbGearA.toggle();
     m_climbGearB.toggle();

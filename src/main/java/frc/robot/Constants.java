@@ -16,7 +16,8 @@ public final class Constants {
 
     public static final class DriveTrain {
         public static final double TRACK_WIDTH = 0.0; // Inches
-        public static final int ENCODER_RESOLUTION = 128;
+        public static final int ENCODER_RESOLUTION = 128; //why is this so low
+        public static final int TALON_ENCODER_RESOLUTION = 2048;
         public static final double ENCODER_METERS_PER_TICK = (0.0254 * 6d) * Math.PI / (double) ENCODER_RESOLUTION;
     
         public static final double VELOCITY_P = 0.0;
