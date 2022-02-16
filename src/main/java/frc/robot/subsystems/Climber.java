@@ -15,15 +15,15 @@ import frc.robot.RobotMap;
 
 public class Climber extends SubsystemBase {
 
-  private final DoubleSolenoid m_leftClampA, m_leftFingerA, m_rightClampA, m_rightFingerA;
+  private final DoubleSolenoid m_fingerOne, m_ClampOne, m_fingerTwo, m_ClampTwo;
   //private final DigitalInput m_leftLimitSwitch, ;m_rightLimitSwitch
 
   /** Creates a new ExampleSubsystem. */
   public Climber() {
-    m_leftClampA = new DoubleSolenoid(PneumaticsModuleType.REVPH, RobotMap.PCM.LEFTCLAMP_AA, RobotMap.PCM.LEFTCLAMP_BA);
-    m_leftFingerA = new DoubleSolenoid(PneumaticsModuleType.REVPH, RobotMap.PCM.LEFTFINGER_AA, RobotMap.PCM.LEFTFINGER_BA);
-    m_rightClampA = new DoubleSolenoid(PneumaticsModuleType.REVPH, RobotMap.PCM.RIGHTCLAMP_AA, RobotMap.PCM.RIGHTCLAMP_BA);
-    m_rightFingerA = new DoubleSolenoid(PneumaticsModuleType.REVPH, RobotMap.PCM.RIGHTFINGER_AA, RobotMap.PCM.RIGHTFINGER_BA);
+    m_fingerOne = new DoubleSolenoid(PneumaticsModuleType.REVPH, RobotMap.PCM.FINGER_ONE_A, RobotMap.PCM.FINGER_ONE_B);
+    m_ClampOne = new DoubleSolenoid(PneumaticsModuleType.REVPH, RobotMap.PCM.CLAMP_ONE_A, RobotMap.PCM.CLAMP_ONE_B);
+    m_fingerTwo = new DoubleSolenoid(PneumaticsModuleType.REVPH, RobotMap.PCM.FINGER_TWO_A, RobotMap.PCM.FINGER_TWO_B);
+    m_ClampTwo = new DoubleSolenoid(PneumaticsModuleType.REVPH, RobotMap.PCM.CLAMP_TWO_A, RobotMap.PCM.CLAMP_TWO_B);
 
 
     //m_leftLimitSwitch = new DigitalInput(RobotMap.DIGITALINPUT.LEFTLIMITSWITCH);
@@ -36,20 +36,20 @@ public class Climber extends SubsystemBase {
    *
    * @param value the potition to set them to
    */
-  public void setLeftClamps(Value value) {
-    m_leftClampA.set(value);
+  public void setFingerOne(Value value) {
+    m_fingerOne.set(value);
   }
 
-  public void setLeftFingers(Value value) {
-    m_leftFingerA.set(value);
+  public void setClampOne(Value value) {
+    m_ClampOne.set(value);
   }
 
-  public void setRightClamps(Value value) {
-    m_rightClampA.set(value);
+  public void setFingerTwo(Value value) {
+    m_fingerTwo.set(value);
   }
 
-   public void setRightFingers(Value value) {
-    m_rightFingerA.set(value);
+   public void setClampTwo(Value value) {
+    m_ClampTwo.set(value);
   } 
 
   /**
@@ -57,20 +57,20 @@ public class Climber extends SubsystemBase {
    *
    * @param out true if forwards, false if reverse
    */
-  public void setLeftClamps(boolean out) {
-    setLeftClamps(out ? Value.kForward : Value.kReverse);
+  public void setFingerOne(boolean out) {
+    setFingerOne(out ? Value.kForward : Value.kReverse);
   }
 
-  public void setLeftFingers(boolean out) {
-    setLeftFingers(out ? Value.kForward : Value.kReverse);
+  public void setClampOne(boolean out) {
+    setClampOne(out ? Value.kForward : Value.kReverse);
   }
 
-  public void setRightClamps(boolean out) {
-    setRightClamps(out ? Value.kForward : Value.kReverse);
+  public void setFingerTwo(boolean out) {
+    setFingerTwo(out ? Value.kForward : Value.kReverse);
   }
 
-  public void setRightFingers(boolean out) {
-    setRightFingers(out ? Value.kForward : Value.kReverse);
+  public void setClampTwo(boolean out) {
+    setClampTwo(out ? Value.kForward : Value.kReverse);
   }
 
   /**
@@ -84,20 +84,20 @@ public class Climber extends SubsystemBase {
   //   return m_rightLimitSwitch.get();
   // }
 
-  public void toggleLeftClamps() {
-    setLeftClamps(m_leftClampA.get() == Value.kReverse);
+  public void toggleFingerOne() {
+    setFingerOne(m_fingerOne.get() == Value.kReverse);
   }
 
-  public void toggleRightClamps() {
-    setRightClamps(m_rightClampA.get() == Value.kReverse);
+  public void toggleFingerTwo() {
+    setFingerTwo(m_fingerTwo.get() == Value.kReverse);
   }
 
-  public void toggleLeftFingers() {
-    setLeftFingers(m_leftFingerA.get() == Value.kReverse);
+  public void toggleClampOne() {
+    setClampOne(m_ClampOne.get() == Value.kReverse);
   }
 
-  public void toggleRightFingers() {
-    setRightFingers(m_rightFingerA.get() == Value.kReverse);
+  public void toggleClampTwo() {
+    setClampTwo(m_ClampTwo.get() == Value.kReverse);
   }
 
  

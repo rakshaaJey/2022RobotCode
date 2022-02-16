@@ -71,11 +71,11 @@ public class RobotContainer {
     //JoystickButton runShooter = new JoystickButton(m_driveJoystick, RobotMap.ControllerPorts.shooterOne);
     //JoystickButton runShooterTwo = new JoystickButton(m_driveJoystick, RobotMap.ControllerPorts.shooterTwo);
 
-    JoystickButton toggleLeftClamps = new JoystickButton(m_driveJoystick, RobotMap.ControllerPorts.leftClamps);
-    JoystickButton toggleRightClamps = new JoystickButton(m_driveJoystick, RobotMap.ControllerPorts.rightClamps);
+    JoystickButton toggleFingerOne = new JoystickButton(m_driveJoystick, RobotMap.ControllerPorts.FINGER_ONE);
+    JoystickButton toggleFingerTwo = new JoystickButton(m_driveJoystick, RobotMap.ControllerPorts.FINGER_TWO);
 
-    JoystickButton toggleLeftFingers = new JoystickButton(m_driveJoystick, RobotMap.ControllerPorts.leftFingers);
-    JoystickButton toggleRightFingers = new JoystickButton(m_driveJoystick, RobotMap.ControllerPorts.rightFingers);
+    JoystickButton toggleClampOne = new JoystickButton(m_driveJoystick, RobotMap.ControllerPorts.CLAMP_ONE);
+    JoystickButton toggleClampTwo = new JoystickButton(m_driveJoystick, RobotMap.ControllerPorts.CLAMP_TWO);
 
     JoystickButton doHighGear = new JoystickButton(m_driveJoystick, RobotMap.ControllerPorts.highGear);
     JoystickButton doClimbGear = new JoystickButton(m_driveJoystick, RobotMap.ControllerPorts.climbGear);
@@ -110,20 +110,20 @@ public class RobotContainer {
         m_driveTrain.stop();
       }), true);
 
-    toggleLeftClamps.whenPressed(new InstantCommand(() -> {
-      m_climber.toggleLeftClamps();
+    toggleFingerOne.whenPressed(new InstantCommand(() -> {
+      m_climber.toggleFingerOne();
     }), true);
 
-    toggleRightClamps.whenPressed(new InstantCommand(() -> {
-      m_climber.toggleRightClamps();
+    toggleFingerTwo.whenPressed(new InstantCommand(() -> {
+      m_climber.toggleFingerTwo();
     }), true);
 
-    toggleLeftFingers.whenPressed(new InstantCommand(() -> {
-      m_climber.toggleLeftFingers();
+    toggleClampOne.whenPressed(new InstantCommand(() -> {
+      m_climber.toggleClampOne();
     }), true);
 
-    toggleRightFingers.whenPressed(new InstantCommand(() -> {
-      m_climber.toggleRightFingers();
+    toggleClampTwo.whenPressed(new InstantCommand(() -> {
+      m_climber.toggleClampTwo();
     }), true);
 
     doHighGear.whenPressed(new InstantCommand(() -> {

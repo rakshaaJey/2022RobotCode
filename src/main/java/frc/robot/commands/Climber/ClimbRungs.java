@@ -46,10 +46,10 @@
 //   public void execute() {
 //     switch (m_phase) {
 //       case 0: // Clamp on to first bar and extend finger on other side
-//         m_climber.setLeftFingers(true);
-//         m_climber.setLeftClamps(true);
-//         m_climber.setRightFingers(true);
-//         m_climber.setRightClamps(false);
+//         m_climber.setFingerOne(true);
+//         m_climber.setClampOne(true);
+//         m_climber.setFingerTwo(true);
+//         m_climber.setClampTwo(false);
 
 //         if (m_timer.get() >= 10) {
 //           m_phase++;

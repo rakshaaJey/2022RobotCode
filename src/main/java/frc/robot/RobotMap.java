@@ -48,11 +48,11 @@ public class RobotMap {
         public static final int driveForward = 6; //RB
         public static final int driveBackward = 5; //LB
 
-        public static final int leftClamps = 1; //A
-        public static final int rightClamps = 2; //B
+        public static final int FINGER_ONE = 1; //A
+        public static final int FINGER_TWO = 2; //B
 
-        public static final int leftFingers = 3; //X
-        public static final int rightFingers = 4; //Y
+        public static final int CLAMP_ONE = 3; //X
+        public static final int CLAMP_TWO = 4; //Y
 
         public static final int highGear = 10; //L3
         public static final int climbGear = 11; //R3
@@ -86,14 +86,14 @@ public class RobotMap {
         public static final int CLIMB_SHIFTER_B = 13;
         
         // These are for climb bar A
-        public static final int LEFTFINGER_AA = 1;
-        public static final int LEFTFINGER_BA = 3;
-        public static final int RIGHTFINGER_AA = 5;
-        public static final int RIGHTFINGER_BA = 7;
-        public static final int LEFTCLAMP_AA = 2;
-        public static final int LEFTCLAMP_BA = 4;
-        public static final int RIGHTCLAMP_AA = 6;
-        public static final int RIGHTCLAMP_BA = 8;
+        public static final int CLAMP_ONE_A = 1;
+        public static final int CLAMP_ONE_B = 3;
+        public static final int CLAMP_TWO_A = 5;
+        public static final int CLAMP_TWO_B = 7;
+        public static final int FINGER_ONE_A = 2;
+        public static final int FINGER_ONE_B = 4;
+        public static final int FINGER_TWO_A = 6;
+        public static final int FINGER_TWO_B = 8;
 
         public static final int INTAKE_A = 0; 
         public static final int INTAKE_B = 0;
