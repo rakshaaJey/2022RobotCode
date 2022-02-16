@@ -151,6 +151,8 @@ public class DriveTrain extends SubsystemBase {
   public void setHighGear(boolean on) {
     m_highGearA.set(on);
     m_highGearB.set(on);
+    m_climbGearA.set(!on);
+    m_climbGearB.set(!on);
   }
 
   public boolean isHighGear() {
@@ -160,6 +162,8 @@ public class DriveTrain extends SubsystemBase {
   public void setClimbGear(boolean on) {
     m_climbGearA.set(on);
     m_climbGearB.set(on);
+    m_highGearA.set(!on);
+    m_highGearB.set(!on);
   }
 
   public boolean isClimbGear() {

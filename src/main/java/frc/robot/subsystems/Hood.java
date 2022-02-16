@@ -12,7 +12,7 @@ import frc.robot.util.Utilities;
 
 public class Hood extends PIDSubsystem {
 
-  private final Servo m_servo;
+  //private final Servo m_servo;
   private final AnalogInput m_pot;
 
   private double m_minRawAngle;
@@ -23,11 +23,11 @@ public class Hood extends PIDSubsystem {
   public Hood() {
     super(new PIDController(Constants.Hood.POSITION_P, Constants.Hood.POSITION_I, Constants.Hood.POSITION_D));
 
-    m_servo = new Servo(RobotMap.PWM.HOOD_SERVO);
+    //m_servo = new Servo(RobotMap.PWM.HOOD_SERVO);
     m_pot = new AnalogInput(RobotMap.AIO.HOOD_POT);
 
-    m_servo.setBounds(Constants.Hood.PWM_MAX, Constants.Hood.PWM_DEADBAND_MAX, Constants.Hood.PWM_CENTER,
-        Constants.Hood.PWM_DEADBAND_MIN, Constants.Hood.PWM_MIN);
+    //m_servo.setBounds(Constants.Hood.PWM_MAX, Constants.Hood.PWM_DEADBAND_MAX, Constants.Hood.PWM_CENTER,
+        //Constants.Hood.PWM_DEADBAND_MIN, Constants.Hood.PWM_MIN);
 
     getController().setTolerance(Constants.Hood.POSITION_TOLERANCE);
 
@@ -106,7 +106,7 @@ public class Hood extends PIDSubsystem {
         || (getRawAngle() > Constants.Hood.MAX_RAW_ANGLE && speed < 0)) {
       stop();
     } else {
-      m_servo.setSpeed(speed);
+      //m_servo.setSpeed(speed);
     }
   }
 
@@ -121,7 +121,7 @@ public class Hood extends PIDSubsystem {
    * Sets the hood speed to 0
    */
   public void stop() {
-    m_servo.setSpeed(0.0);
+    //m_servo.setSpeed(0.0);
   }
 
   @Override

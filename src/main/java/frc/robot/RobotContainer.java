@@ -83,11 +83,11 @@ public class RobotContainer {
     //JoystickButton increase = new JoystickButton(m_driveJoystick, RobotMap.ControllerPorts.increaseButton); //Increase flywheel rpm by 100
     //JoystickButton decrease = new JoystickButton(m_driveJoystick, RobotMap.ControllerPorts.decreaseButton); //Decrease flywheel rpm by 100
 
-    DoubleShooter driveForward = new DoubleShooter(doHighGear, doClimbGear);
-    DoubleShooter driveBackwards = new DoubleShooter(toggleLeftFingers, toggleRightFingers);
+    JoystickButton driveForward = new JoystickButton(m_driveJoystick, RobotMap.ControllerPorts.driveForward);
+    JoystickButton driveBackwards = new JoystickButton(m_driveJoystick, RobotMap.ControllerPorts.driveBackward);
 
-    JoystickButton enagageClimbButton = new JoystickButton(m_driveJoystick, RobotMap.JOYSTICK_BUTTONS.ENGAGE_CLIMB);
-    JoystickButton climbButton = new JoystickButton(m_driveJoystick, RobotMap.JOYSTICK_BUTTONS.CLIMB);
+    // JoystickButton enagageClimbButton = new JoystickButton(m_driveJoystick, RobotMap.JOYSTICK_BUTTONS.ENGAGE_CLIMB);
+    // JoystickButton climbButton = new JoystickButton(m_driveJoystick, RobotMap.JOYSTICK_BUTTONS.CLIMB);
 
     /* m_driveTrain.setDefaultCommand(new RunCommand(() -> {
       m_driveTrain.arcadeDrive(-m_driveJoystick.getRawAxis(RobotMap.JOYSTICK_AXIS.DRIVE),
@@ -95,11 +95,19 @@ public class RobotContainer {
     }, m_driveTrain)); */
 
       driveForward.whenHeld(new RunCommand(() -> {
-        m_driveTrain.set(0.5);
+        m_driveTrain.set(0.2);
+      }), true);
+      
+      driveForward.whenReleased(new RunCommand(() -> {
+        m_driveTrain.stop();
       }), true);
 
       driveBackwards.whenHeld(new RunCommand(() -> {
-        m_driveTrain.set(-0.5);
+        m_driveTrain.set(-0.2);
+      }), true);
+
+      driveBackwards.whenReleased(new RunCommand(() -> {
+        m_driveTrain.stop();
       }), true);
 
     toggleLeftClamps.whenPressed(new InstantCommand(() -> {
